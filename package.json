@@ -6,14 +6,25 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js --color -p --progress --hide-modules --display-optimization-bailout",
     "build:clean": "rimraf ./build",
-    "start": "cross-env NODE_ENV=development node server",
-    "start:production": "npm run test && npm run build && npm run start:prod",
-    "start:prod": "cross-env NODE_ENV=production node server",
+    "start": "cross-env NODE_ENV=development concurrently -k -r -s first \"npm run test:watch\" \"npm run open:dev\" \"npm run lint:watch\"",
+    "start:production": "npm run test && npm run build && npm run open:prod",
+    "open:dev": "cross-env NODE_ENV=development babel-node server",
+    "open:prod": "cross-env NODE_ENV=production babel-node server",
+    "clean": "npm run test:clean && npm run build:clearn",
+    "lint": "esw config src server --color",
+    "lint:watch": "npm run lint -- --watch",
+    "test:watch": "jest --watch",
     "test:clean": "rimraf ./coverage",
     "test": "cross-env NODE_ENV=test jest --coverage",
-    "test:watch": "cross-env NODE_ENV=test jest --watchAll"
+    "test:watchAll": "cross-env NODE_ENV=test jest --watchAll"
   },
-  "keywords": ["react", "redux", "starter", "minimal", "boilerplate"],
+  "keywords": [
+    "react",
+    "redux",
+    "starter",
+    "minimal",
+    "boilerplate"
+  ],
   "engines": {
     "npm": ">=3",
     "node": ">=5"
@@ -35,11 +46,13 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.0",
+    "redux-saga": "^0.16.0",
     "whatwg-fetch": "^2.0.4"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.5",
     "babel-loader": "^7.1.4",
     "babel-plugin-dynamic-import-node": "^1.2.0",
     "babel-plugin-react-transform": "^3.0.0",
@@ -51,9 +64,16 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "circular-dependency-plugin": "^5.0.2",
+    "concurrently": "^3.6.0",
     "css-loader": "^0.28.11",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "^5.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.9.1",
+    "eslint-plugin-redux-saga": "^0.9.0",
+    "eslint-watch": "^3.1.5",
     "eventsource-polyfill": "^0.9.6",
     "exports-loader": "^0.7.0",
     "file-loader": "^1.1.11",

@@ -9,13 +9,15 @@ const divider = chalk.gray('\n------------------------------------');
 
  const logger = {
    error: (err) => {
+     /* eslint-disable-next-line no-console */
      console.error(chalk.red(err));
    },
 
    // Called when express.js app starts on given port w/o errors
    appStarted: (port, host) => {
+     /* eslint-disable-next-line no-console */
      console.log(`Server started! ${chalk.green('√')}`);
-
+     /* eslint-disable-next-line no-console */
      console.log(`
       ${chalk.bold('Access URLs:')}${divider}
       Localhost: ${chalk.magenta(`http://${host}:${port}`)}
