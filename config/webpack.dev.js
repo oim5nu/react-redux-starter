@@ -36,10 +36,18 @@ module.exports = require('./webpack.common.js')({
       failOnError: false // show a warning when there is a circular dependency
     })
   ],
-
+  /*
+  babelQuery: {
+    // This is a feature of 'babel-loader' for webpack (not babel itself)
+    // It enables caching results in ./node_modules/.cache/babel-loader/
+    // directory for faster rebuilds
+    cacheDirectory: true,
+    plugins: ['react-hot-loader/babel']
+  },
+  */
   // Emit a source map for easier debugging
   // See https://webpack.js.org/configuration/devtool/#devtool
-  devtool: 'eval-source-map',
+  devtool: 'cheap-module-eval-source-map',
   performance: {
     hints: false
   }

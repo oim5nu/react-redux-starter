@@ -13,10 +13,14 @@ module.exports = (options) => ({
     path: path.resolve(process.cwd(), 'build'),
     publicPath: '/'
   }, options.output),
+  optimization: options.optimization,
   module: {
     rules: [
       {
         test: /\.js$/,
+        // without this would cause error: 
+        // Cannot read property 'EventSource' of undefined
+        include:[path.resolve(__dirname,'../src')], 
         exclude: ['node_modules'],
         use: [{ 
           loader: 'babel-loader',
@@ -105,12 +109,5 @@ module.exports = (options) => ({
   },
   devtool: options.devtool,
   target: 'web', // Make web variables accessible to webpack, e.g. window
-  performance: options.performance || {},
-  optimization: {
-    namedModules: true,
-    splitChunks: {
-      name: 'vendor',
-      minChunks: 2
-    }
-  }
+  performance: options.performance || {}
 });

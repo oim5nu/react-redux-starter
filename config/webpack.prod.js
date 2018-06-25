@@ -45,4 +45,7 @@ module.exports = require('./webpack.common.js')({
   performance: {
     assetFilter: (assetFilename) => !(/(\.map$)|(^(main\.|favicon\.))/.test(assetFilename)),
   },
+  // Emit a source map for easier debugging
+  // See https://webpack.js.org/configuration/devtool/#devtool
+  devtool: 'source-map'
 });
