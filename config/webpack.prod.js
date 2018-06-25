@@ -13,6 +13,16 @@ module.exports = require('./webpack.common.js')({
     filename: '[name].[chunkhash].js',
     chunkFilename: '[name].[chunkhas].chunk.js'
   },
+
+  optimization: {
+    minimize: true,
+    nodeEnv: 'production',
+    sideEffects: true,
+    concatenationModules: true,
+    splitChunks: { chunks: 'all' },
+    runtimeChunk: true,
+  },
+
   plugins: [
     // Minify and optimize the index.html
     new HtmlWebpackPlugin({

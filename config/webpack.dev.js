@@ -10,7 +10,7 @@ module.exports = require('./webpack.common.js')({
   mode: 'development',
   // Add hot reloading in development
   entry: [
-    'eventsource-polyfill',
+    'eventsource-polyfill', // for hot-loading with IE
     'webpack-hot-middleware/client?reload=true',
     path.join(process.cwd(), 'src/index.js')
   ],
@@ -18,6 +18,10 @@ module.exports = require('./webpack.common.js')({
   output: {
     filename: '[name].js',
     chunkFilename: '[name].chunk.js'
+  },
+
+  optimization: {
+    minimize: false,
   },
 
   // Add development plugins

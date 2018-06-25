@@ -13,7 +13,7 @@
     "test": "cross-env NODE_ENV=test jest --coverage",
     "test:watch": "cross-env NODE_ENV=test jest --watchAll"
   },
-  "keywords": [],
+  "keywords": ["react", "redux", "starter", "minimal", "boilerplate"],
   "engines": {
     "npm": ">=3",
     "node": ">=5"

@@ -2,7 +2,7 @@ import React from 'react';
 
 const App = () => 
   (<div>
-    <h1>React Boilerplate Lite</h1>
+    <h1>React Redux Starter</h1>
     </div>
   );
 
