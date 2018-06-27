@@ -12,6 +12,7 @@ The boilerplate tries to features all the latest tools and best practices in the
 - _Webpack_ - **Webpack 4**, Hot Reloading, Code Splitting, Optimized Prod Build and more
 - _Test_ - Jest with Enzyme
 - _Lint_ - Eslint
-- _Styles_ - tachyons, SCSS Style
+- _Styles_ - tachyons, CSS, SCSS Style support
+
 ## Notes
 
