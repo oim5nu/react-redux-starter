@@ -16,3 +16,7 @@ The boilerplate tries to features all the latest tools and best practices in the
 
 ## Notes
 
+## TODO
+- utils
+- generators for redux templates
+
