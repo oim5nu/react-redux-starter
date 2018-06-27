@@ -18,7 +18,7 @@ module.exports = require('./webpack.common.js')({
     minimize: true,
     nodeEnv: 'production',
     sideEffects: true,
-    concatenationModules: true,
+    concatenateModules: true,
     splitChunks: { chunks: 'all' },
     runtimeChunk: true,
   },

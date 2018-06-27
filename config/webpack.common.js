@@ -27,14 +27,40 @@ module.exports = (options) => ({
           options: options.babelQuery,
         }],
       }, {
-        test: /\.s(a|c)ss$/,
+        test: /(.css|\.scss|\.sass)$/,
         exclude: ['node_modules'],
-        use: ['style-loader','css-loader','sass-loader'],
-      }, { // Preprocess 3rd party .css files located in node_modules 
+        use: ['style-loader', { 
+          loader: 'css-loader',
+          options: {
+            sourceMap: true,
+            minimize: options.mode === 'production' ? true : false
+          }
+        }, {
+          loader: 'postcss-loader',
+          options: {
+            plugins: () => [
+              require('autoprefixer')
+            ],
+            sourceMap: true
+          }
+        }, {
+          loader: 'sass-loader',
+          options: {
+            sourceMap: true
+          }
+        }],
+      },/* { // Preprocess 3rd party .css files located in node_modules 
         test: /\.css$/,
         include: ['node_modules'],
-        use: ['style-loader', 'css-loader'],
-      }, {
+        use: ['style-loader', 'css-loader', {
+          loader: 'postcss-loader',
+          options: {
+            plugins: () => [
+              require('autoprefixer')
+            ]
+          }
+        }],
+      },*/ {
         test: /\.(eot|svg|otf|ttf|woff|woff2)$/,
         use: 'file-loader'
       }, {
